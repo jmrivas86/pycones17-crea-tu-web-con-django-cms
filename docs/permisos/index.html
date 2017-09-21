@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Permisos - PyConES 2017</title>
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome-4.5.0.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="../css/highlight.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+	
+	<script src="../js/jquery-1.10.2.min.js"></script>
+        <script src="../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../js/highlight.pack.js"></script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="..">PyConES 2017</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                    <li >
+                        <a href="..">Inicio</a>
+                    </li>
+                    <li >
+                        <a href="../paginas/">Páginas</a>
+                    </li>
+                    <li class="active">
+                        <a href="./">Permisos</a>
+                    </li>
+                    <li >
+                        <a href="../templates/">Templates</a>
+                    </li>
+                    <li >
+                        <a href="../menu/">Menú</a>
+                    </li>
+                    <li >
+                        <a href="../plugins/">Plugins</a>
+                    </li>
+                    <li >
+                        <a href="../apphooks/">Apphooks</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Avanzado <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li >
+    <a href="../avanzado/paginas_tipo/">Páginas tipo</a>
+</li>
+                            
+<li >
+    <a href="../avanzado/extender_pagina/">Extender el Modelo de Página</a>
+</li>
+                            
+<li >
+    <a href="../avanzado/extender_toolbar/">Extender el Toolbar</a>
+</li>
+                            
+<li >
+    <a href="../avanzado/extender_menu/">Extender el menú</a>
+</li>
+                            
+<li >
+    <a href="../avanzado/cache/">Caché en django CMS</a>
+</li>
+                        </ul>
+                    </li>
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                    <li >
+                        <a rel="next" href="../paginas/">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../templates/">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#permisos">Permisos</a></li>
+            <li><a href="#permisos-de-pagina">Permisos de página</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="permisos">Permisos</h1>
+<p>En django CMS tenemos la posibilidad de habilitar un sistema de permisos propio. Se pueden conceder permisos:</p>
+<ul>
+<li>Que determinan qué acciones puede realizar un usuario.</li>
+<li>Que determinan en qué partes del sitio pueden realizarlas.</li>
+</ul>
+<p>Estas dos dimensiones de los permisos son independientes entre sí.</p>
+<p>Para activar este sistema debemos seleccionar en el fichero settings.py del proyecto la variable CMS_PERMISSION a True, sin embargo si decidimos no habilitarlo lo pondremos a False y el sistema de permisos que prevalecerá será el estándar django. Por defecto CMS_PERMISSION será habilitado:</p>
+<p><code>CMS_PERMISSION = TRUE</code></p>
+<p>Cuando CMS_PERMISSION está habilitado, encontrará tres nuevos modelos disponibles en el administrador:</p>
+<ul>
+<li>Permisos globales de las páginas</li>
+<li>Grupos de usuarios (página)</li>
+<li>Usuarios (página)</li>
+</ul>
+<p><img alt="Permisos en django CMS" src="../images/perm1.png" /></p>
+<p>Descubrirá que estos dos últimos simplemente reflejan los Grupos Django y los permisos de Usuario que ya existen en el sistema. Son una representación más simple de los permisos disponibles, específicos para la edición de páginas. A menudo encontrará más útil utilizar los grupos Django y los permisos de usuario.</p>
+<h2 id="permisos-de-pagina">Permisos de página</h2>
+<p>Cuando CMS_PERMISSION está habilitado, a menos que simplemente hagamos que los usuarios sean superusuarios, necesitaremos dar a cada uno de ellos un permiso global o permiso sobre páginas específicas (preferiblemente a través de su pertenencia a un grupo).</p>
+<p>Tanto la concesión de permisos globales como específicos se describen a continuación.</p>
+<h3 id="permisos-de-paginas-globales">Permisos de páginas globales</h3>
+<p>Los permisos globales de las páginas están disponibles en la sección django CMS del administrador.</p>
+<p><img alt="Permisos globales de las páginas" src="../images/perm2.png" /></p>
+<p>Las dos primeras opciones para un permiso global se refieren a quiénes solicitan.</p>
+<p>A continuación, se muestra una lista de las acciones que puede realizar el editor. Los editores necesitarán al menos algunos de estos si van a administrar páginas.</p>
+<p>Finalmente, hay una lista de los sitios en los que pueden realizar las acciones.</p>
+<h3 id="permisos-especificos-de-pagina">Permisos específicos de página</h3>
+<p>El sistema de permisos CMS también proporciona el control de permisos para páginas o jerarquías de páginas.</p>
+<p>Éstas se controlan seleccionando <em>Permisos</em> desde el menú de Página en la barra de herramientas cuando se encuentra en la página (esta opción sólo está disponible cuando el modo CMS_PERMISSION está activado).</p>
+<p><img alt="Permisos de página" src="../images/perm3.png" /></p>
+<p>El inicio de sesión requerido determina si los visitantes anónimos podrán ver la página en absoluto.</p>
+<p>La visibilidad de los menús determina quién podrá ver la página en los menús de navegación: todos, sólo usuarios anónimos o que hayan iniciado sesión.</p>
+<p>Las restricciones de visualización determinan qué grupos y usuarios podrán ver la página.</p>
+<p>Tenga en cuenta que esto no aplica nuevas restricciones a los usuarios que también son editores con permisos apropiados.</p>
+<p>Los permisos de página determinan lo que los editores pueden hacer a una página (o jerarquía de páginas). Funcionan igual que los permisos globales de las Páginas descritos anteriormente, pero no se aplican globalmente. Se añaden a los permisos globales - no los anulan.</p>
+<p><img alt="Permisos de página 2" src="../images/perm4.png" /></p></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>var base_url = '..';</script>
+        <script data-main="../mkdocs/js/search.js" src="../mkdocs/js/require.js"></script>
+        <script src="../js/base.js"></script><div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

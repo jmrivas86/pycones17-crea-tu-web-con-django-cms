@@ -1,0 +1,19 @@
+{% extends CMS_TEMPLATE %}
+{% load cms_tags %}
+
+{% block content %}
+  <div class="container mtb">
+       <div class="row">
+         <! -- BLOG POSTS LIST -->
+         <div class="col-lg-8">
+          {% block newsblog_content %}
+              {# article_list.html and article_detail.html extend this template #}
+          {% endblock %}
+        </div><! --/col-lg-8 -->
+        <! -- SIDEBAR -->
+        <div class="col-lg-4">
+          {% placeholder "sidebar" %}
+        </div>
+      </div><! --/row -->
+     </div><! --/container -->
+{% endblock content %}

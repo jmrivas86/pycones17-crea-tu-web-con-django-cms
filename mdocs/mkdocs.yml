@@ -1,0 +1,17 @@
+site_name: PyConES 2017
+pages:
+    - Inicio: index.md
+    - Páginas: paginas.md
+    - Permisos: permisos.md
+    - Templates: templates.md
+    - Menú: menu.md
+    - Plugins: plugins.md
+    - Apphooks: apphooks.md
+    - Avanzado:
+      - Páginas tipo: avanzado/paginas_tipo.md
+      - Extender el Modelo de Página: avanzado/extender_pagina.md
+      - Extender el Toolbar: avanzado/extender_toolbar.md
+      - Extender el menú: avanzado/extender_menu.md
+      - Caché en django CMS: avanzado/cache.md
+
+# theme: readthedocs

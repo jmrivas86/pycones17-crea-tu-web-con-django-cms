@@ -1,0 +1,71 @@
+{% load static cms_tags menu_tags sekizai_tags %}
+<!doctype html>
+<html>
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <link rel="shortcut icon" href="{% static "vendor/ico/favicon.ico" %}">
+
+      <title>{% block title %}This is my new project home page{% endblock title %}</title>
+
+      <style type="text/css">
+          .nav {
+              padding-left: 0;
+          }
+          .nav li {
+              display: inline;
+              list-style-type: none;
+              padding-right: 20px;
+          }
+          .container {
+              width: 940px;
+              margin: 0 auto
+          }
+          .content {
+              float: left;
+              width: 80%;
+          }
+          .sidebar {
+              float: left;
+              width: 20%;
+          }
+      </style>
+
+      {% block css %}
+        <!-- Bootstrap core CSS -->
+        <link href="{% static 'vendor/css/bootstrap.css' %}" rel="stylesheet">
+
+        <!-- Custom styles for this template -->
+        <link href="{% static 'vendor/css/style.css' %}" rel="stylesheet">
+        <link href="{% static 'vendor/css/font-awesome.min.css' %}" rel="stylesheet">
+      {% endblock %}
+
+      {% render_block "css" %}
+      <script src="{% static 'vendor/js/modernizr.js' %}"></script>
+
+    </head>
+    <body>
+        {% cms_toolbar %}
+        {% include "inc/menu.html" %}
+
+        {% block content %}{% endblock content %}
+
+        <footer>
+          {% static_placeholder 'footer' %}
+        </footer>
+        {% block js %}
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+          <script src="{% static 'vendor/js/bootstrap.min.js' %}"></script>
+          <script src="{% static 'vendor/js/retina-1.1.0.js' %}"></script>
+          <script src="{% static 'vendor/js/jquery.hoverdir.js' %}"></script>
+          <script src="{% static 'vendor/js/jquery.hoverex.min.js' %}"></script>
+          <script src="{% static 'vendor/js/jquery.prettyPhoto.js' %}"></script>
+          <script src="{% static 'vendor/js/jquery.isotope.min.js' %}"></script>
+          <script src="{% static 'vendor/js/custom.js' %}"></script>
+        {% endblock %}
+        {% render_block "js" %}
+    </body>
+</html>

@@ -1,0 +1,22 @@
+{% load i18n staticfiles thumbnail cms_tags apphooks_config_tags %}
+
+{% if article.featured_image_id %}
+  <img class="img-responsive" src="{% thumbnail article.featured_image 800x450 crop subject_location=article.featured_image.subject_location %}" alt="{{ article.featured_image.alt }}">
+{% endif %}
+
+{% if detail_view %}
+    <h3 class="ctitle">{% render_model article "title" %}</h3>
+{% else %}
+    <a href="{% namespace_url 'article-detail' article.slug namespace=namespace default='' %}"><h3 class="ctitle">{% render_model article "title" %}</h3></a>
+{% endif %}
+
+<p><csmall>Posted: {{ article.publishing_date|date }}</csmall> | <csmall2>By: {% include "aldryn_newsblog/includes/author.html" with author=article.author %}</csmall2></p>
+{% render_model article "lead_in" %}
+
+{% if detail_view %}
+    {% render_placeholder article.content language placeholder_language %}
+{% else %}
+  <p><a href="{% namespace_url 'article-detail' article.slug namespace=namespace default='' %}">[Read More]</a></p>
+  <div class="hline"></div>
+  <div class="spacing"></div>
+{% endif %}

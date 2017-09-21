@@ -1,0 +1,17 @@
+{% load menu_tags %}
+
+{% for child in children %}
+<li class="child{% if child.children %} dropdown{% endif %}{% if child.selected %} selected{% endif %}{% if child.ancestor %} ancestor{% endif %}{% if child.sibling %} sibling{% endif %}{% if child.descendant %} descendant{% endif %}">
+	<a
+    {% if child.children %}class="dropdown-toggle" data-toggle="dropdown"{% endif %}
+    href="{{ child.attr.redirect_url|default:child.get_absolute_url }}">
+    {{ child.get_menu_title }}
+    {% if child.children %} <b class="caret"></b>{% endif %}
+  </a>
+	{% if child.children %}
+	<ul class="dropdown-menu">
+		{% show_menu from_level to_level extra_inactive extra_active template "" "" child %}
+	</ul>
+	{% endif %}
+</li>
+{% endfor %}

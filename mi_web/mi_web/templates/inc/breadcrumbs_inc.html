@@ -1,0 +1,7 @@
+{% for ance in ancestors %}
+	{% if not forloop.last %}
+	<a href="{{ ance.get_absolute_url }}"><h3 style="display: inline">{{ ance.get_menu_title }} &raquo; </h3></a> <span class="separator"></span>
+	{% else %}
+	<span class="active"><h3 style="display: inline">{{ ance.get_menu_title }}</h3></span>
+	{% endif %}
+{% endfor %}

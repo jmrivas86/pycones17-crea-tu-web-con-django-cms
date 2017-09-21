@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Plugins - PyConES 2017</title>
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome-4.5.0.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="../css/highlight.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+	
+	<script src="../js/jquery-1.10.2.min.js"></script>
+        <script src="../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../js/highlight.pack.js"></script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="..">PyConES 2017</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                    <li >
+                        <a href="..">Inicio</a>
+                    </li>
+                    <li >
+                        <a href="../paginas/">Páginas</a>
+                    </li>
+                    <li >
+                        <a href="../permisos/">Permisos</a>
+                    </li>
+                    <li >
+                        <a href="../templates/">Templates</a>
+                    </li>
+                    <li >
+                        <a href="../menu/">Menú</a>
+                    </li>
+                    <li class="active">
+                        <a href="./">Plugins</a>
+                    </li>
+                    <li >
+                        <a href="../apphooks/">Apphooks</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Avanzado <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li >
+    <a href="../avanzado/paginas_tipo/">Páginas tipo</a>
+</li>
+                            
+<li >
+    <a href="../avanzado/extender_pagina/">Extender el Modelo de Página</a>
+</li>
+                            
+<li >
+    <a href="../avanzado/extender_toolbar/">Extender el Toolbar</a>
+</li>
+                            
+<li >
+    <a href="../avanzado/extender_menu/">Extender el menú</a>
+</li>
+                            
+<li >
+    <a href="../avanzado/cache/">Caché en django CMS</a>
+</li>
+                        </ul>
+                    </li>
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                    <li >
+                        <a rel="next" href="../menu/">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../apphooks/">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#plugins">Plugins</a></li>
+            <li><a href="#por-que-necesitas-escribir-un-plugin">¿Por qué necesitas escribir un plugin?</a></li>
+            <li><a href="#version-rapida">Versión rápida</a></li>
+        <li class="main "><a href="#pasos-a-seguir-para-crear-nuesto-plugins-de-empleados">Pasos a seguir para crear nuesto plugins de Empleados</a></li>
+            <li><a href="#demo">DEMO</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="plugins">Plugins</h1>
+<p>En la página <strong>sobre_nosotros</strong> nos habíamos quedado en el apartado "conoce a nuestro equipo". Este apartado es muy propicio para introducir los <strong>custom plugins</strong> de django CMS.</p>
+<p>Los CMS Plugins son contenidos reutilizables que pueden ser insertados en las páginas CMS de django (o en cualquier contenido que utilice los placeholders de django CMS). Permiten la publicación automática de la información, sin necesidad de intervención adicional.</p>
+<h2 id="por-que-necesitas-escribir-un-plugin">¿Por qué necesitas escribir un plugin?</h2>
+<p>Los plugins son la forma más conveniente de integrar contenido de otra aplicación de Django en una página CMS de django.</p>
+<p>Por ejemplo, suponga que está desarrollando un sitio para una compañía discográfica en django CMS. Puede querer tener un cuadro de "Últimos lanzamientos" en la página principal de su sitio.</p>
+<p>Por supuesto, cada cierto tiempo podías editar esa página y actualizar la información. Sin embargo, una compañía discográfica sensata también gestionará su catálogo en Django, lo que significa que Django ya sabe cuáles son las novedades de esta semana.</p>
+<p>Esta es una excelente oportunidad para hacer uso de esa información para hacer su vida más fácil - todo lo que necesita hacer es crear un plugin de CMS django que puede insertar en su página de inicio, y dejar que haga el trabajo de publicar información sobre las últimas versiones.</p>
+<p>Los plugins son reutilizables. Tal vez su compañía discográfica está produciendo una serie de reediciones de discos de carnaval semanales... en la página de su sitio web sobre la serie, podría insertar el mismo plugin, configurado de forma un poco diferente, que publicará información sobre los nuevos lanzamientos recientes de esa serie.</p>
+<h2 id="version-rapida">Versión rápida</h2>
+<p>Un plugin de django CMS está compuesto fundamentalmente de tres cosas.</p>
+<ul>
+<li>un plugin editor, para configurar un plugin cada vez que se despliega</li>
+<li>un plugin publisher, para hacer el trabajo automatizado de decidir qué publicar</li>
+<li>un plugin template, para convertir la información en una página web</li>
+</ul>
+<p>Estos corresponden al esquema de Modelo-Vista-Controlador que ya conocemos:</p>
+<ul>
+<li>El modelo de plugin para almacenar su configuración</li>
+<li>La vista de plugin que resuelve lo que necesita ser visualizado</li>
+<li>La plantilla de plugin para renderizar la información</li>
+</ul>
+<p>Y para construir tu plugin, lo harás a partir de:</p>
+<ul>
+<li>Una subclase de modelos <code>cms.pluginmodel.CMSPlugin</code> para almacenar la configuración de las instancias de plugins</li>
+<li>Una subclase de <code>cms.plugin_base.CMSPluginBase</code> que define la lógica de su plugin</li>
+<li>Una plantilla que muestra su plugin</li>
+</ul>
+<h1 id="pasos-a-seguir-para-crear-nuesto-plugins-de-empleados">Pasos a seguir para crear nuesto plugins de Empleados</h1>
+<p>Primero vamos a crear una nueva app django en nuestro proyecto dónde vamos a gestionar estos plugins:</p>
+<p><code>python manage.py startapp my_web_cms</code></p>
+<p>Seguidamente vamos a crear nuestro modelo de plugin en el fichero <code>models.py</code>:</p>
+<pre><code>from django.db import models
+from filer.fields.image import FilerImageField
+from cms.models.pluginmodel import CMSPlugin
+from django.utils.translation import ugettext_lazy as _
+
+
+class EmpleadosPluginModel(CMSPlugin):
+    titulo = models.CharField(max_length=50)
+
+    def copy_relations(self, oldinstance):
+        # Before copying related objects from the old instance, the ones
+        # on the current one need to be deleted. Otherwise, duplicates may
+        # appear on the public version of the page
+        self.empleado_item.all().delete()
+
+        for empleado_item in oldinstance.empleado_item.all():
+            # instance.pk = None; instance.pk.save() is the slightly odd but
+            # standard Django way of copying a saved model instance
+            empleado_item.pk = None
+            empleado_item.plugin = self
+            empleado_item.save()
+
+    def __str__(self):
+        return self.titulo
+
+
+class Empleado(models.Model):
+    nombre = models.CharField(
+        max_length=250,
+        verbose_name=_(&quot;Nombre&quot;),
+        null=False, blank=False
+    )
+    apellidos = models.CharField(
+        max_length=250,
+        verbose_name=_(&quot;Apellidos&quot;),
+        null=False, blank=False
+    )
+    cargo = models.CharField(
+        max_length=250,
+        verbose_name=_(&quot;Cargo&quot;),
+        null=False, blank=False
+    )
+    descripcion = models.CharField(
+        max_length=250,
+        verbose_name=_(&quot;Descripción&quot;),
+        null=False, blank=False
+    )
+    twitter = models.URLField(
+        verbose_name=_(&quot;Usuario de twitter&quot;),
+        null=False, blank=True
+    )
+    email = models.EmailField(
+        verbose_name=_(&quot;Correo electrónico&quot;),
+        null=False, blank=True
+    )
+    foto = FilerImageField(verbose_name=&quot;Foto&quot;, null=False, blank=False)
+    plugin = models.ForeignKey(
+        EmpleadosPluginModel,
+        related_name=&quot;empleado_item&quot;
+    )
+
+    @property
+    def nombre_completo(self):
+        full_name = &quot;{nombre} {apellidos}&quot;.format(nombre=self.nombre, apellidos=self.apellidos)
+        return full_name.strip()
+
+    def __str__(self):
+        return self.nombre_completo
+
+</code></pre>
+
+<p>El siguiente paso es añadir nuestra app a <code>INSTALLED_APPS</code> en el fichero <code>settings.py</code> para posteriormente crear y aplicar las migración para este nuevo modelo que hemos creado.</p>
+<p><code>python manage.py makemigrations</code></p>
+<p><code>python manage.py migrate</code></p>
+<p>Llegados a este punto ya tenemos nuestro modelo de plugin, hemos cumplido con el paso 1, el siguiente es crear nuestra vista plugin que tenga la lógica. Vamos a crear un fichero <strong>cms_plugins.py</strong> donde estará nuestro plugin:</p>
+<pre><code>from cms.plugin_base import CMSPluginBase
+from cms.plugin_pool import plugin_pool
+from django.utils.translation import ugettext_lazy as _
+from django.contrib import admin
+from .models import EmpleadosPluginModel, Empleado
+
+
+class EmpleadoInlineAdmin(admin.StackedInline):
+    model = Empleado
+
+
+class EmpleadosPlugin(CMSPluginBase):
+    model = EmpleadosPluginModel
+    name = _(&quot;Empleados Plugin&quot;)
+    render_template = &quot;plugins/empleados_plugin.html&quot;
+    inlines = (EmpleadoInlineAdmin, )
+    cache = False
+
+    def render(self, context, instance, placeholder):
+        context = super(EmpleadosPlugin, self).render(context, instance, placeholder)
+        empleados = instance.empleado_item.all()
+        context.update({
+            'empleados': empleados
+        })
+        return context
+
+plugin_pool.register_plugin(EmpleadosPlugin)
+</code></pre>
+
+<p>Perfecto, hemos cumplido con el 2º paso. Ahora vamos a por el último, hemos definido en la vista de plugin que la <code>render_template</code> es <code>plugins/empleados_plugin.html</code> por lo tanto tenemos que crear un directorio plugins dentro del directorio templates dentro de nuestra app y dentro crear el fichero <code>empleados_plugin.html</code> con el siguiente contenido:</p>
+<pre><code>&lt;div class=&quot;container mtb&quot;&gt;
+ &lt;div class=&quot;row centered&quot;&gt;
+   &lt;h3 class=&quot;mb&quot;&gt;{{ instance.titulo}}&lt;/h3&gt;
+   {% for empleado in empleados %}
+   &lt;div class=&quot;col-lg-3 col-md-3 col-sm-3&quot;&gt;
+     &lt;div class=&quot;he-wrap tpl6&quot;&gt;
+     &lt;img src=&quot;{{ empleado.foto.url }}&quot; alt=&quot;&quot;&gt;
+       &lt;div class=&quot;he-view&quot;&gt;
+         &lt;div class=&quot;bg a0&quot; data-animate=&quot;fadeIn&quot;&gt;
+                         &lt;h3 class=&quot;a1&quot; data-animate=&quot;fadeInDown&quot;&gt;Contact Me:&lt;/h3&gt;
+                         &lt;a href=&quot;{{empleado.email}}&quot; class=&quot;dmbutton a2&quot; data-animate=&quot;fadeInUp&quot;&gt;&lt;i class=&quot;fa fa-envelope&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+                         &lt;a href=&quot;{{empleado.twitter}}&quot; class=&quot;dmbutton a2&quot; data-animate=&quot;fadeInUp&quot;&gt;&lt;i class=&quot;fa fa-twitter&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+                   &lt;/div&gt;&lt;!-- he bg --&gt;
+       &lt;/div&gt;&lt;!-- he view --&gt;
+     &lt;/div&gt;&lt;!-- he wrap --&gt;
+     &lt;h4&gt;{{empleado.nombre_completo}}&lt;/h4&gt;
+     &lt;h5 class=&quot;ctitle&quot;&gt;{{empleado.cargo}}&lt;/h5&gt;
+     &lt;p&gt;{{empleado.descripcion}}&lt;/p&gt;
+     &lt;div class=&quot;hline&quot;&gt;&lt;/div&gt;
+   &lt;/div&gt;&lt;! --/col-lg-3 --&gt;
+   {% endfor %}
+ &lt;/div&gt;&lt;! --/row --&gt;
+&lt;/div&gt;&lt;! --/container --&gt;
+</code></pre>
+
+<p>Tu aplicación django debe ser parecida a la siguiente:</p>
+<p><img alt="Árbol de la APP" src="../images/plugins.png" /></p>
+<h2 id="demo">DEMO</h2>
+<p>Vamos a añadir nuestro nuevo plugin en el placeholder contenido de la página <strong>sobre_nosotros</strong>.</p></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>var base_url = '..';</script>
+        <script data-main="../mkdocs/js/search.js" src="../mkdocs/js/require.js"></script>
+        <script src="../js/base.js"></script><div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

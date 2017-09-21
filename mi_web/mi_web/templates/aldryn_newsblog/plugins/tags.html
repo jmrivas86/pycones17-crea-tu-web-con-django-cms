@@ -1,0 +1,9 @@
+{% load i18n apphooks_config_tags %}
+
+<h4>Popular Tags</h4>
+<div class="hline"></div>
+<p>
+  {% for tag in tags %}
+    <a class="btn btn-theme" href="{% namespace_url "article-list-by-tag" tag.slug namespace=instance.app_config.namespace default='' %}" role="button">{{ tag.name }}</a>
+  {% endfor %}
+</p>

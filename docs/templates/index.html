@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Templates - PyConES 2017</title>
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome-4.5.0.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="../css/highlight.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+	
+	<script src="../js/jquery-1.10.2.min.js"></script>
+        <script src="../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../js/highlight.pack.js"></script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="..">PyConES 2017</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                    <li >
+                        <a href="..">Inicio</a>
+                    </li>
+                    <li >
+                        <a href="../paginas/">Páginas</a>
+                    </li>
+                    <li >
+                        <a href="../permisos/">Permisos</a>
+                    </li>
+                    <li class="active">
+                        <a href="./">Templates</a>
+                    </li>
+                    <li >
+                        <a href="../menu/">Menú</a>
+                    </li>
+                    <li >
+                        <a href="../plugins/">Plugins</a>
+                    </li>
+                    <li >
+                        <a href="../apphooks/">Apphooks</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Avanzado <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li >
+    <a href="../avanzado/paginas_tipo/">Páginas tipo</a>
+</li>
+                            
+<li >
+    <a href="../avanzado/extender_pagina/">Extender el Modelo de Página</a>
+</li>
+                            
+<li >
+    <a href="../avanzado/extender_toolbar/">Extender el Toolbar</a>
+</li>
+                            
+<li >
+    <a href="../avanzado/extender_menu/">Extender el menú</a>
+</li>
+                            
+<li >
+    <a href="../avanzado/cache/">Caché en django CMS</a>
+</li>
+                        </ul>
+                    </li>
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                    <li >
+                        <a rel="next" href="../permisos/">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../menu/">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#templates-placeholders">Templates &amp; Placeholders</a></li>
+            <li><a href="#plantillas">Plantillas</a></li>
+            <li><a href="#placeholders">Placeholders</a></li>
+            <li><a href="#static-placeholders">Static Placeholders</a></li>
+        <li class="main "><a href="#resultado-final-de-plantillas-base-y-home">Resultado final de plantillas base y home</a></li>
+            <li><a href="#demo">DEMO</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="templates-placeholders">Templates &amp; Placeholders</h1>
+<p>Veamos ahora los Placeholders y las plantillas.</p>
+<h2 id="plantillas">Plantillas</h2>
+<p>Con las plantillas podemos personalizar el aspecto de nuestro sitio web, definir placeholders para marcar secciones de contenido gestionado y utilizar etiquetas especiales para generar menús y mucho más.</p>
+<p>Podemos definir varias plantillas, con diferentes estilos, layouts, componentes y elegirlas para cada página según sea necesario. Una plantilla de página se puede cambiar por otra en cualquier momento.</p>
+<p>La plantilla de la página de inicio creada automáticamente es fullwidth.html, la primera que aparece en la configuración del settings.py <strong><em>CMS_TEMPLATES</em></strong>:</p>
+<pre><code>CMS_TEMPLATES = (
+    ## Customize this
+    ('fullwidth.html', 'Fullwidth'),
+    ('sidebar_left.html', 'Sidebar Left'),
+    ('sidebar_right.html', 'Sidebar Right')
+)
+</code></pre>
+
+<p>Podemos ver que tenemos una plantilla html que se llama <strong><em>base.html</em></strong> la cual contiene la estructura básica que heredará todas las plantillas y además crearemos una nueva que llamaremos <strong><em>home.html</em></strong> que será la que configuraremos para la home de nuestra web.</p>
+<h3 id="basehtml">base.html</h3>
+<p>Los cambios que añadimos a nuestra home para adaptarla son:</p>
+<ul>
+<li>Añadimos el templatetag static</li>
+</ul>
+<p><code>{% load static cms_tags menu_tags sekizai_tags %}</code></p>
+<ul>
+<li>Creamos un block justo antes del <code>{% render_block "css" %}</code> para incluir dentro los ficheros con los estilos del tema SOLID con los que crearemos nuestra web.</li>
+</ul>
+<pre><code>{% block css %}
+  &lt;!-- Bootstrap core CSS --&gt;
+  &lt;link href=&quot;{% static 'vendor/css/bootstrap.css' %}&quot; rel=&quot;stylesheet&quot;&gt;
+  &lt;!-- Custom styles for this template --&gt;
+  &lt;link href=&quot;{% static 'vendor/css/style.css' %}&quot; rel=&quot;stylesheet&quot;&gt;
+  &lt;link href=&quot;{% static 'vendor/css/font-awesome.min.css' %}&quot; rel=&quot;stylesheet&quot;&gt;
+{% endblock %}
+{% render_block &quot;css&quot; %}
+&lt;script src=&quot;{% static 'vendor/js/modernizr.js' %}&quot;&gt;&lt;/script&gt;
+</code></pre>
+
+<ul>
+<li>Quitamos el div con la clase <strong>container</strong> y dejamos sólamente el menú y el block content.</li>
+</ul>
+<pre><code>&lt;ul class=&quot;nav&quot;&gt;
+    {% show_menu 0 100 100 100 %}
+&lt;/ul&gt;
+{% block content %}{% endblock content %}
+</code></pre>
+
+<ul>
+<li>Al igual que con las css creamos otro block justo antes del <code>{% render_block "js" %}</code> para incluir dentro los ficheros con los ficheros javascript.</li>
+</ul>
+<pre><code>{% block js %}
+  &lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js&quot;&gt;&lt;/script&gt;
+  &lt;script src=&quot;{% static 'vendor/js/bootstrap.min.js' %}&quot;&gt;&lt;/script&gt;
+  &lt;script src=&quot;{% static 'vendor/js/retina-1.1.0.js' %}&quot;&gt;&lt;/script&gt;
+  &lt;script src=&quot;{% static 'vendor/js/jquery.hoverdir.js' %}&quot;&gt;&lt;/script&gt;
+  &lt;script src=&quot;{% static 'vendor/js/jquery.hoverex.min.js' %}&quot;&gt;&lt;/script&gt;
+  &lt;script src=&quot;{% static 'vendor/js/jquery.prettyPhoto.js' %}&quot;&gt;&lt;/script&gt;
+  &lt;script src=&quot;{% static 'vendor/js/jquery.isotope.min.js' %}&quot;&gt;&lt;/script&gt;
+  &lt;script src=&quot;{% static 'vendor/js/custom.js' %}&quot;&gt;&lt;/script&gt;
+{% endblock %}
+{% render_block &quot;js&quot; %}
+</code></pre>
+
+<p>A continuación creamos nuestra plantilla <strong><em>home.html</em></strong></p>
+<pre><code>{% extends &quot;base.html&quot; %}
+{% load cms_tags %}
+
+{% block title %}{% page_attribute &quot;page_title&quot; %}{% endblock title %}
+
+{% block content %}
+    {% placeholder &quot;content&quot; %}
+{% endblock content %}
+</code></pre>
+
+<h2 id="placeholders">Placeholders</h2>
+<p>Los placeholders o marcadores de posición son una forma fácil de definir secciones en una plantilla HTML que se rellenará con contenido de la base de datos cuando la página sea renderizada.</p>
+<p>Este contenido se edita usando django CMS, usando los template tags de Django.</p>
+<p>Nuestra home.html contiene un único placeholder por el momento</p>
+<p><code>{% placeholder "content" %}</code></p>
+<p>Primero hemos cargado el template tag cms_tags para poder usar los tags <strong>placeholder</strong> y <strong>page_attribute</strong></p>
+<p><code>{% load cms_tags %}</code></p>
+<h2 id="static-placeholders">Static Placeholders</h2>
+<p>El contenido de los placeholders que hemos visto hasta ahora es diferente para cada página. A veces, queremos tener una sección en nuestra web que debe ser la misma en todas las página, como el bloque de pie de página.</p>
+<p>Podríamos programar el pie de página en el html directamente, pero sería mejor ser capaz de controlarlo a través del CMS. Para esto son los <strong>placeholders estáticos</strong>.</p>
+<p>Los placeholders estáticos son una forma fácil de mostrar el mismo contenido en múltiples sitios en nuestra web. Actúan casi como los placeholders normales, excepto por el hecho de que una vez que se crea y se agrega contenido a él, se guardará globalmente. Incluso cuando elimine los placeholders estáticos de una plantilla, puede reutilizarlos más tarde.</p>
+<p>Crearemos el footer de nuestra web con un static placeholder:</p>
+<pre><code>&lt;footer&gt;
+  {% static_placeholder 'footer' %}
+&lt;/footer&gt;
+</code></pre>
+
+<p>Después de editar el footer nuestra vista estructura de la home tiene que verse de un manera similar a la siguiente:</p>
+<p><img alt="Static placeholder" src="../images/static_placeholder.png" /></p>
+<p>Podemos ver que el placeholder de Footer tiene una chincheta que nos indica que es estático, dicho placeholder estará en todas las templates.</p>
+<h1 id="resultado-final-de-plantillas-base-y-home">Resultado final de plantillas base y home</h1>
+<p>Nuestra plantilla <code>base.html</code> tiene que quedar de la siguiente manera:</p>
+<pre><code>{% load static cms_tags menu_tags sekizai_tags %}
+&lt;!doctype html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+      &lt;meta charset=&quot;utf-8&quot;&gt;
+      &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
+      &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+      &lt;meta name=&quot;description&quot; content=&quot;&quot;&gt;
+      &lt;meta name=&quot;author&quot; content=&quot;&quot;&gt;
+      &lt;link rel=&quot;shortcut icon&quot; href=&quot;{% static &quot;vendor/ico/favicon.ico&quot; %}&quot;&gt;
+
+      &lt;title&gt;{% block title %}This is my new project home page{% endblock title %}&lt;/title&gt;
+
+      &lt;style type=&quot;text/css&quot;&gt;
+          .nav {
+              padding-left: 0;
+          }
+          .nav li {
+              display: inline;
+              list-style-type: none;
+              padding-right: 20px;
+          }
+          .container {
+              width: 940px;
+              margin: 0 auto
+          }
+          .content {
+              float: left;
+              width: 80%;
+          }
+          .sidebar {
+              float: left;
+              width: 20%;
+          }
+      &lt;/style&gt;
+
+      {% block css %}
+        &lt;!-- Bootstrap core CSS --&gt;
+        &lt;link href=&quot;{% static 'vendor/css/bootstrap.css' %}&quot; rel=&quot;stylesheet&quot;&gt;
+
+        &lt;!-- Custom styles for this template --&gt;
+        &lt;link href=&quot;{% static 'vendor/css/style.css' %}&quot; rel=&quot;stylesheet&quot;&gt;
+        &lt;link href=&quot;{% static 'vendor/css/font-awesome.min.css' %}&quot; rel=&quot;stylesheet&quot;&gt;
+      {% endblock %}
+
+      {% render_block &quot;css&quot; %}
+      &lt;script src=&quot;{% static 'vendor/js/modernizr.js' %}&quot;&gt;&lt;/script&gt;
+
+    &lt;/head&gt;
+    &lt;body&gt;
+        {% cms_toolbar %}
+        &lt;ul class=&quot;nav&quot;&gt;
+            {% show_menu 0 100 100 100 %}
+        &lt;/ul&gt;
+
+        {% block content %}{% endblock content %}
+
+        &lt;footer&gt;
+          {% static_placeholder 'footer' %}
+        &lt;/footer&gt;
+        {% block js %}
+          &lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js&quot;&gt;&lt;/script&gt;
+          &lt;script src=&quot;{% static 'vendor/js/bootstrap.min.js' %}&quot;&gt;&lt;/script&gt;
+          &lt;script src=&quot;{% static 'vendor/js/retina-1.1.0.js' %}&quot;&gt;&lt;/script&gt;
+          &lt;script src=&quot;{% static 'vendor/js/jquery.hoverdir.js' %}&quot;&gt;&lt;/script&gt;
+          &lt;script src=&quot;{% static 'vendor/js/jquery.hoverex.min.js' %}&quot;&gt;&lt;/script&gt;
+          &lt;script src=&quot;{% static 'vendor/js/jquery.prettyPhoto.js' %}&quot;&gt;&lt;/script&gt;
+          &lt;script src=&quot;{% static 'vendor/js/jquery.isotope.min.js' %}&quot;&gt;&lt;/script&gt;
+          &lt;script src=&quot;{% static 'vendor/js/custom.js' %}&quot;&gt;&lt;/script&gt;
+        {% endblock %}
+        {% render_block &quot;js&quot; %}
+    &lt;/body&gt;
+&lt;/html&gt;
+
+</code></pre>
+
+<p>Crearemos también una plantilla <code>home.html</code> que será con la que montemos la página home de nuestra web, el resultado sería como sigue:</p>
+<pre><code>{% extends &quot;base.html&quot; %}
+{% load cms_tags %}
+
+{% block title %}{% page_attribute &quot;page_title&quot; %}{% endblock title %}
+
+{% block content %}
+    {% placeholder &quot;content&quot; %}
+{% endblock content %}
+
+</code></pre>
+
+<p>También tendremos que añadirla al <code>CMS_TEMPLATES</code> del <code>settings.py</code>:</p>
+<pre><code>CMS_TEMPLATES = (
+    ('fullwidth.html', 'Fullwidth'),
+    ('sidebar_left.html', 'Sidebar Left'),
+    ('sidebar_right.html', 'Sidebar Right')
+    ('home.html', 'Home'),
+)
+</code></pre>
+
+<h2 id="demo">DEMO</h2>
+<p>Ahora es tiempo de editar la página y crear nuestra home replicando la del tema SOLID.</p></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>var base_url = '..';</script>
+        <script data-main="../mkdocs/js/search.js" src="../mkdocs/js/require.js"></script>
+        <script src="../js/base.js"></script><div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Menú - PyConES 2017</title>
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome-4.5.0.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="../css/highlight.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+	
+	<script src="../js/jquery-1.10.2.min.js"></script>
+        <script src="../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../js/highlight.pack.js"></script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="..">PyConES 2017</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                    <li >
+                        <a href="..">Inicio</a>
+                    </li>
+                    <li >
+                        <a href="../paginas/">Páginas</a>
+                    </li>
+                    <li >
+                        <a href="../permisos/">Permisos</a>
+                    </li>
+                    <li >
+                        <a href="../templates/">Templates</a>
+                    </li>
+                    <li class="active">
+                        <a href="./">Menú</a>
+                    </li>
+                    <li >
+                        <a href="../plugins/">Plugins</a>
+                    </li>
+                    <li >
+                        <a href="../apphooks/">Apphooks</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Avanzado <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li >
+    <a href="../avanzado/paginas_tipo/">Páginas tipo</a>
+</li>
+                            
+<li >
+    <a href="../avanzado/extender_pagina/">Extender el Modelo de Página</a>
+</li>
+                            
+<li >
+    <a href="../avanzado/extender_toolbar/">Extender el Toolbar</a>
+</li>
+                            
+<li >
+    <a href="../avanzado/extender_menu/">Extender el menú</a>
+</li>
+                            
+<li >
+    <a href="../avanzado/cache/">Caché en django CMS</a>
+</li>
+                        </ul>
+                    </li>
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                    <li >
+                        <a rel="next" href="../templates/">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../plugins/">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#menu-y-breadcrumbs">Menú y breadcrumbs</a></li>
+            <li><a href="#show_menu">show_menu</a></li>
+            <li><a href="#show_breadcrumb">show_breadcrumb</a></li>
+            <li><a href="#cambios-en-plantilla-basehtml">Cambios en plantilla base.html</a></li>
+            <li><a href="#demo">DEMO</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="menu-y-breadcrumbs">Menú y breadcrumbs</h1>
+<h2 id="show_menu"><strong>show_menu</strong></h2>
+<p>El tag show_menu muestra la navegación de la página actual. Se pude adaptar el HTML si agrega una plantilla menu/menu. html a su proyecto o edita la que se proporciona con django CMS.</p>
+<p>show_menu toma seis parámetros opcionales:</p>
+<ul>
+<li>
+<p><strong>start_level</strong> (default=0): Desde qué nivel se debe mostrar la navegación.  Si tenemos la home como nodo raíz (Nivel 0) y no queremos mostrarlo, configuraremos start_level a 1.</p>
+</li>
+<li>
+<p><strong>end_level</strong> (default=100): En qué nivel debe detenerse la navegación</p>
+</li>
+<li>
+<p><strong>extra_inactive</strong> (default=0): Especifica cuántos niveles de navegación deben mostrarse si un nodo no es un antepasado directo o descendiente del nodo activo actual.</p>
+</li>
+<li>
+<p><strong>extra_active</strong> (default=100): Especifica cuántos niveles de descendientes del nodo activo actual deben visualizarse.</p>
+</li>
+<li>
+<p>namespace: Especifica el espacio de nombres del menú. Si está vacío usará todos los espacios de nombres.</p>
+</li>
+<li>
+<p>root_id: Especifica el id del nodo raíz.</p>
+</li>
+<li>
+<p><strong>template</strong>: Podemos proporcionar un parámetro de plantilla para que la sustituya.</p>
+</li>
+</ul>
+<h3 id="ejemplos">Ejemplos:</h3>
+<ul>
+<li>Navegación completa (como lista anidada):</li>
+</ul>
+<pre><code>{% load menu_tags %}
+&lt;ul&gt;
+    {% show_menu 0 100 100 100 %}
+&lt;/ul&gt;
+</code></pre>
+
+<ul>
+<li>Navegación con árbol activo (como lista anidada):</li>
+</ul>
+<pre><code>&lt;ul&gt;
+    {% show_menu 0 100 0 100 %}
+&lt;/ul&gt;
+</code></pre>
+
+<ul>
+<li>Navegación con un sólo nivel extra activo:</li>
+</ul>
+<pre><code>&lt;ul&gt;
+    {% show_menu 0 100 0 1 %}
+&lt;/ul&gt;
+</code></pre>
+
+<ul>
+<li>Navegación de nivel 1 (como lista anidada):</li>
+</ul>
+<pre><code>&lt;ul&gt;
+    {% show_menu 1 %}
+&lt;/ul&gt;
+</code></pre>
+
+<ul>
+<li>Navegación con una plantilla personalizada:</li>
+</ul>
+<pre><code>{% show_menu 0 100 100 100 &quot;myapp/menu.html&quot; %}
+</code></pre>
+
+<p>Utilizaremos un sólo nivel de navegación para nuestro menú, así que añadimos <code>{% show_menu 0 100 0 0 %}</code> a nuestro <code>base.html</code></p>
+<h2 id="show_breadcrumb"><strong>show_breadcrumb</strong></h2>
+<p>Muestra la miga de pan de la página actual. Podemos personalizar este html como queramos pasándole el html en el template tag.</p>
+<p>Nosotros mostraremos la miga de pan obviando el nodo raíz (la home, el 0), nos quedaría de la siguiente manera:</p>
+<p><code>{% show_breadcrumb 1 "inc/breadcrumbs_inc.html" %}</code></p>
+<h2 id="cambios-en-plantilla-basehtml"><strong>Cambios en plantilla base.html</strong></h2>
+<p>Para crear el <strong>menú</strong> vamos a sacarlo a una template <code>menu.html</code>.</p>
+<ul>
+<li>Primero creamos un directorio <strong>inc</strong> dentro del directorio <strong>templates</strong> de nuestro proyecto</li>
+<li>Seguidamente creamos un <code>menu.html</code> con el siguiente contenido (vamos a ir adaptando el código del tema SOLID basado en bootstrap que hemos elegido el código de django-cms ):</li>
+</ul>
+<pre><code>{% load menu_tags %}
+
+&lt;!-- Fixed navbar --&gt;
+&lt;div class=&quot;navbar navbar-default navbar-fixed-top&quot; role=&quot;navigation&quot;&gt;
+  &lt;div class=&quot;container&quot;&gt;
+    &lt;div class=&quot;navbar-header&quot;&gt;
+      &lt;button type=&quot;button&quot; class=&quot;navbar-toggle&quot; data-toggle=&quot;collapse&quot; data-target=&quot;.navbar-collapse&quot;&gt;
+        &lt;span class=&quot;sr-only&quot;&gt;Toggle navigation&lt;/span&gt;
+        &lt;span class=&quot;icon-bar&quot;&gt;&lt;/span&gt;
+        &lt;span class=&quot;icon-bar&quot;&gt;&lt;/span&gt;
+        &lt;span class=&quot;icon-bar&quot;&gt;&lt;/span&gt;
+      &lt;/button&gt;
+      &lt;a class=&quot;navbar-brand&quot; href=&quot;/&quot;&gt;PyConES 2017&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;navbar-collapse collapse navbar-right&quot;&gt;
+      &lt;ul class=&quot;nav navbar-nav&quot;&gt;
+          {% show_menu 0 100 0 0 &quot;inc/menu_inc.html&quot; %}
+      &lt;/ul&gt;
+    &lt;/div&gt;&lt;!--/.nav-collapse --&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<ul>
+<li>Posteriormente creamos un <code>menu_inc.html</code> al que hacemos referencia en el anterior <code>menu.html</code> creado que será la template con el que irá renderizado los puntos de menú:</li>
+</ul>
+<pre><code>{% load menu_tags %}
+
+{% for child in children %}
+&lt;li class=&quot;child{% if child.children %} dropdown{% endif %}{% if child.selected %} selected{% endif %}{% if child.ancestor %} ancestor{% endif %}{% if child.sibling %} sibling{% endif %}{% if child.descendant %} descendant{% endif %}&quot;&gt;
+    &lt;a
+    {% if child.children %}class=&quot;dropdown-toggle&quot; data-toggle=&quot;dropdown&quot;{% endif %}
+    href=&quot;{{ child.attr.redirect_url|default:child.get_absolute_url }}&quot;&gt;
+    {{ child.get_menu_title }}
+    {% if child.children %} &lt;b class=&quot;caret&quot;&gt;&lt;/b&gt;{% endif %}
+  &lt;/a&gt;
+    {% if child.children %}
+    &lt;ul class=&quot;dropdown-menu&quot;&gt;
+        {% show_menu from_level to_level extra_inactive extra_active template &quot;&quot; &quot;&quot; child %}
+    &lt;/ul&gt;
+    {% endif %}
+&lt;/li&gt;
+{% endfor %}
+</code></pre>
+
+<ul>
+<li>Ahora ya tenemos nuestras plantillas de menú preparadas para sustituir en el bloque del <code>base.html</code>así que vamos a cambiar el menú que traía la plantilla por defecto por el nuestro:</li>
+</ul>
+<pre><code>&lt;ul class=&quot;nav&quot;&gt;
+    {% show_menu 0 100 100 100 %}
+&lt;/ul&gt;
+</code></pre>
+
+<p>con el siguiente bloque:</p>
+<pre><code>{% include &quot;inc/menu.html&quot; %}
+</code></pre>
+
+<p>Para crear el <strong>breadcrumbs</strong> vamos a seguir la misma dinámica que con el menú.</p>
+<ul>
+<li>Creamos un fichero <code>breadcrumbs.html</code> con el siguiente contenido dentro del directorio <strong>inc</strong></li>
+</ul>
+<pre><code>{% load menu_tags %}
+
+&lt;div id=&quot;blue&quot;&gt;
+    &lt;div class=&quot;container&quot;&gt;
+    &lt;div class=&quot;row&quot;&gt;
+      {% show_breadcrumb 1 &quot;inc/breadcrumbs_inc.html&quot; %}
+    &lt;/div&gt;&lt;!-- /row --&gt;
+    &lt;/div&gt; &lt;!-- /container --&gt;
+&lt;/div&gt;&lt;!-- /blue --&gt;
+</code></pre>
+
+<ul>
+<li>Creamos otro fichero dentro del directorio <strong>inc</strong> llamado <code>breadcrumbs_inc.html</code> con el siguiente contenido:</li>
+</ul>
+<pre><code>{% for ance in ancestors %}
+    {% if not forloop.last %}
+    &lt;a href=&quot;{{ ance.get_absolute_url }}&quot;&gt;&lt;h3 style=&quot;display: inline&quot;&gt;{{ ance.get_menu_title }} &amp;raquo; &lt;/h3&gt;&lt;/a&gt; &lt;span class=&quot;separator&quot;&gt;&lt;/span&gt;
+    {% else %}
+    &lt;span class=&quot;active&quot;&gt;&lt;h3 style=&quot;display: inline&quot;&gt;{{ ance.get_menu_title }}&lt;/h3&gt;&lt;/span&gt;
+    {% endif %}
+{% endfor %}
+</code></pre>
+
+<ul>
+<li>Por último vamos a crear una nueva plantilla dentro del directorio <strong>templates</strong> llamada <code>sobre_nosotros.html</code> que será la plantilla de la siguiente página en la que vamos a trabajar los plugins, esta página deberá incluir el breadcrumbs:</li>
+</ul>
+<pre><code>{% extends &quot;base.html&quot; %}
+{% load cms_tags %}
+
+{% block title %}{% page_attribute &quot;page_title&quot; %}{% endblock title %}
+
+{% block content %}
+    {% include &quot;inc/breadcrumbs.html&quot; %}
+    {% placeholder &quot;content&quot; %}
+{% endblock content %}
+</code></pre>
+
+<p>También tendremos que añadirla al <code>CMS_TEMPLATES</code> del <code>settings.py</code>:</p>
+<pre><code>CMS_TEMPLATES = (
+    ('fullwidth.html', 'Fullwidth'),
+    ('sidebar_left.html', 'Sidebar Left'),
+    ('sidebar_right.html', 'Sidebar Right')
+    ('home.html', 'Home'),
+    ('sobre_nosotros.html', 'Sobre nosotros'),
+)
+</code></pre>
+
+<h2 id="demo">DEMO</h2>
+<p>Vamos a crear la página <strong>sobre_nosotros</strong> replicando la del tema SOLID.</p></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>var base_url = '..';</script>
+        <script data-main="../mkdocs/js/search.js" src="../mkdocs/js/require.js"></script>
+        <script src="../js/base.js"></script><div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

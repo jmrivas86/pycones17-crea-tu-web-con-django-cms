@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Extender el Modelo de Página - PyConES 2017</title>
+        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome-4.5.0.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../css/highlight.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+	
+	<script src="../../js/jquery-1.10.2.min.js"></script>
+        <script src="../../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../../js/highlight.pack.js"></script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="../..">PyConES 2017</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                    <li >
+                        <a href="../..">Inicio</a>
+                    </li>
+                    <li >
+                        <a href="../../paginas/">Páginas</a>
+                    </li>
+                    <li >
+                        <a href="../../permisos/">Permisos</a>
+                    </li>
+                    <li >
+                        <a href="../../templates/">Templates</a>
+                    </li>
+                    <li >
+                        <a href="../../menu/">Menú</a>
+                    </li>
+                    <li >
+                        <a href="../../plugins/">Plugins</a>
+                    </li>
+                    <li >
+                        <a href="../../apphooks/">Apphooks</a>
+                    </li>
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Avanzado <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li >
+    <a href="../paginas_tipo/">Páginas tipo</a>
+</li>
+                            
+<li class="active">
+    <a href="./">Extender el Modelo de Página</a>
+</li>
+                            
+<li >
+    <a href="../extender_toolbar/">Extender el Toolbar</a>
+</li>
+                            
+<li >
+    <a href="../extender_menu/">Extender el menú</a>
+</li>
+                            
+<li >
+    <a href="../cache/">Caché en django CMS</a>
+</li>
+                        </ul>
+                    </li>
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                    <li >
+                        <a rel="next" href="../paginas_tipo/">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../extender_toolbar/">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#extender-el-modelo-de-pagina">Extender el modelo de Página</a></li>
+        <li class="main "><a href="#title-vs-page-extensions">Title vs Page extensions</a></li>
+            <li><a href="#page">Page</a></li>
+            <li><a href="#title">Title</a></li>
+            <li><a href="#implementar-una-extension-basica">Implementar una extensión básica</a></li>
+            <li><a href="#extension-del-modelo-pagina">Extensión del modelo Página</a></li>
+            <li><a href="#extension-del-modelo-title">Extensión del modelo Title</a></li>
+            <li><a href="#manejo-de-las-relaciones">Manejo de las relaciones</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="extender-el-modelo-de-pagina">Extender el modelo de Página</h1>
+<p>Podemos ampliar los modelos <code>cms.models.Page</code> y <code>cms.models.Title</code>  con sus propios campos (por ejemplo añadiendo un icono para cada página) usando los modelos de extensión: <code>cms.extensions.PageExtension</code> y <code>cms.extensions.TitleExtension</code> respectivamente.</p>
+<h1 id="title-vs-page-extensions">Title vs Page extensions</h1>
+<p>La diferencia entre una extensión de página y una extensión de título está relacionada con la diferencia entre los modelos <code>cms.models.Page</code> y <code>cms.models.Title models</code>.</p>
+<h2 id="page">Page</h2>
+<p>Añadir campos que deberían tener los mismos valores para las diferentes versiones lingüísticas de una página (por ejemplo, un icono).</p>
+<h2 id="title">Title</h2>
+<p>Añadir campos que deben tener valores específicos de idioma para las diferentes versiones lingüísticas de una página (por ejemplo, palabras clave).</p>
+<h2 id="implementar-una-extension-basica">Implementar una extensión básica</h2>
+<p>Tres pasos básicos:</p>
+<ol>
+<li>Añadir el modelo de extensión</li>
+<li>Añadir la extensión admin</li>
+<li>Añadir un elemento de menú de la barra de herramientas para la extensión</li>
+</ol>
+<h2 id="extension-del-modelo-pagina">Extensión del modelo Página</h2>
+<p>Ejemplo sencillo que añade un campo de icono a la página</p>
+<pre><code>from django.db import models
+from cms.extensions import PageExtension
+from cms.extensions.extension_pool import extension_pool
+
+
+class IconExtension(PageExtension):
+    image = models.ImageField(upload_to='icons')
+
+
+extension_pool.register(IconExtension)
+</code></pre>
+
+<p>El siguiente paso es crear y aplicar las migración para este nuevo modelo que hemos creado.</p>
+<p><code>python manage.py makemigrations</code></p>
+<p><code>python manage.py migrate</code></p>
+<p>Para la extensión sea editable, primero debe crear una clase de admin que herede de <code>cms.extensions.PageExtensionAdmin</code> dentro del fichero <code>admin.py</code> de nuestra app my_web_cms</p>
+<pre><code>from django.contrib import admin
+from cms.extensions import PageExtensionAdmin
+
+from .models import IconExtension
+
+
+class IconExtensionAdmin(PageExtensionAdmin):
+    pass
+
+admin.site.register(IconExtension, IconExtensionAdmin)
+</code></pre>
+
+<p><strong>PageExtensionAdmin</strong> hereda de <strong>ModelAdmin</strong>, por lo que podremos utilizar el conjunto normal de propiedades de ModelAdmin de Django.</p>
+<p>Hay que tener en cuenta que el campo que contiene la relación entre la extensión y la página CMS no es editable, por lo que no aparece directamente en las vistas de administrador de página. En la documentación oficial esto puede ser tratado en una actualización futura, pero mientras tanto la barra de herramientas proporciona acceso a ella.</p>
+<p>Para añadir a la barra de herramientas el elemento para nuestra extensión, crearemos un archivo llamado <code>cms_toolbars.py</code> en nuestra app my_web_cms y añadiremos un nodo al menú de Página existente, llamado Icono de Página. Cuando se selecciona, se abrirá un diálogo modal en el que se podrá editar el campo Icono de página.</p>
+<p>Añadimos una imagen a nuestra página HOME:</p>
+<p><img alt="Extensión de una página" src="../../images/page_extension.png" /></p>
+<p><img alt="Extensión de una página 2" src="../../images/page_extension_2.png" /></p>
+<h3 id="demo">DEMO</h3>
+<p>Vamos a usar nuestra extensión de página.</p>
+<p>Añadimos en nuestro <code>base.html</code> (justo debajo de <code>{% include "inc/menu.html" %}</code>) el siguiente trozo de código</p>
+<pre><code>  {% if request.current_page.iconextension %}
+    &lt;img style=&quot;margin: 50px 0&quot;src=&quot;{% static request.current_page.iconextension.image.url %}&quot;&gt;
+  {% endif %}
+</code></pre>
+
+<p>Podemos observar que nuestra home muestar la imagen que hemos añadido, sin embargo si entramos la página "sobre nosotros" no se muestra imagen alguna. Podemos añadir una imagen distinta a esta página y volver a comprobar.</p>
+<h2 id="extension-del-modelo-title">Extensión del modelo Title</h2>
+<p><a href="http://docs.django-cms.org/en/release-3.4.x/how_to/extending_page_title.html#title-extensions">documentación oficial</a>.</p>
+<p>Para recuperar una extensión de title dentro de una plantilla, tenemos que coger el objeto title utilizando <code>request.current_page.get_title_obj</code>. Podemos usar el ejemplo anterior:</p>
+<p><code>{{ request.current_page.get_title_obj.ratingextension.rating }}</code></p>
+<h2 id="manejo-de-las-relaciones">Manejo de las relaciones</h2>
+<blockquote>
+<p>Si PageExtension o TitleExtension tiene una ForeignKey o un ManyToManyField, hay que sobreescribir el método <code>copy_relations(self, oldinstance, language)</code> para que estos campos se copien apropiadamente cuando el CMS haga una copia de su extensión para soportar versionado (borrador y publicado), etc.</p>
+</blockquote>
+<p>Ejemplo que usa un ManyToManyField:</p>
+<pre><code>from django.db import models
+from cms.extensions import PageExtension
+from cms.extensions.extension_pool import extension_pool
+
+
+class MyPageExtension(PageExtension):
+
+    page_categories = models.ManyToManyField(Category, blank=True)
+
+    def copy_relations(self, oldinstance, language):
+        for page_category in oldinstance.page_categories.all():
+            page_category.pk = None
+            page_category.mypageextension = self
+            page_category.save()
+
+extension_pool.register(MyPageExtension)
+</code></pre></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>var base_url = '../..';</script>
+        <script data-main="../../mkdocs/js/search.js" src="../../mkdocs/js/require.js"></script>
+        <script src="../../js/base.js"></script><div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

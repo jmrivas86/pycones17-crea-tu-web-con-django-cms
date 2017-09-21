@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Apphooks - PyConES 2017</title>
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome-4.5.0.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="../css/highlight.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+	
+	<script src="../js/jquery-1.10.2.min.js"></script>
+        <script src="../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../js/highlight.pack.js"></script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="..">PyConES 2017</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                    <li >
+                        <a href="..">Inicio</a>
+                    </li>
+                    <li >
+                        <a href="../paginas/">Páginas</a>
+                    </li>
+                    <li >
+                        <a href="../permisos/">Permisos</a>
+                    </li>
+                    <li >
+                        <a href="../templates/">Templates</a>
+                    </li>
+                    <li >
+                        <a href="../menu/">Menú</a>
+                    </li>
+                    <li >
+                        <a href="../plugins/">Plugins</a>
+                    </li>
+                    <li class="active">
+                        <a href="./">Apphooks</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Avanzado <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li >
+    <a href="../avanzado/paginas_tipo/">Páginas tipo</a>
+</li>
+                            
+<li >
+    <a href="../avanzado/extender_pagina/">Extender el Modelo de Página</a>
+</li>
+                            
+<li >
+    <a href="../avanzado/extender_toolbar/">Extender el Toolbar</a>
+</li>
+                            
+<li >
+    <a href="../avanzado/extender_menu/">Extender el menú</a>
+</li>
+                            
+<li >
+    <a href="../avanzado/cache/">Caché en django CMS</a>
+</li>
+                        </ul>
+                    </li>
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                    <li >
+                        <a rel="next" href="../plugins/">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../avanzado/paginas_tipo/">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#apphooks-integracion-de-aplicaciones-django-en-django-cms">Apphooks: Integración de aplicaciones Django en Django-CMS</a></li>
+        <li class="main "><a href="#integracion-de-third-party-application">Integración de third-party application</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="apphooks-integracion-de-aplicaciones-django-en-django-cms">Apphooks: Integración de aplicaciones Django en Django-CMS</h1>
+<p>La integración de otras aplicaciones en django CMS, que es de donde proviene una gran parte de su poder.</p>
+<p>Integrar aplicaciones no sólo significa instalarlas junto a django CMS, para que coexistan pacíficamente. Significa utilizar las características de django CMS para construir un único proyecto web coherente que acelere el trabajo de gestión del sitio y haga posible una publicación más automatizada y enriquecida.</p>
+<p>Es clave para que la integración de django CMS funcione, no requiere que modifiquemos otras aplicaciones a menos que lo deseemos. Esto es particularmente importante cuando estamos utilizando aplicaciones de terceros y no queremos tener que mantener nuestras propios forks. (La única excepción a esto es si decidimos construir características de django CMS directamente en las propias aplicaciones, por ejemplo cuando se utiliza marcadores de posición en otras aplicaciones).</p>
+<p>Veamos el <a href="http://docs.django-cms.org/en/release-3.4.x/introduction/integrating_applications.html">ejemplo</a>. de la documentación oficial de django CMS:</p>
+<h1 id="integracion-de-third-party-application">Integración de third-party application</h1>
+<p>Ya sabemos crear nuestros propios plugins y aplicaciones CMS django, pero otro punto importante es extender nuestro CMS con una aplicación de terceros. Para ello vamos a integrar la aplicación <strong>Aldryn News &amp; Blog</strong>.</p>
+<ul>
+<li>Instalamos la dependencia con pip</li>
+</ul>
+<p><code>pip install aldryn-newsblog</code></p>
+<ul>
+<li>Añadimos a <code>INSTALLED_APPS</code> en el fichero <code>settings.py</code> debería quedar algo así:</li>
+</ul>
+<pre><code>INSTALLED_APPS = (
+    'djangocms_admin_style',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.admin',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
+    'django.contrib.staticfiles',
+    'django.contrib.messages',
+    'cms',
+    'menus',
+    'sekizai',
+    'treebeard',
+    'djangocms_text_ckeditor',
+    'filer',
+    'easy_thumbnails',
+    'djangocms_column',
+    'djangocms_link',
+    'cmsplugin_filer_file',
+    'cmsplugin_filer_folder',
+    'cmsplugin_filer_image',
+    'cmsplugin_filer_utils',
+    'djangocms_style',
+    'djangocms_snippet',
+    'djangocms_googlemap',
+    'djangocms_video',
+    'mi_web',
+    'my_web_cms',
+    'aldryn_apphooks_config',
+    'aldryn_categories',
+    'aldryn_common',
+    'aldryn_newsblog',
+    'aldryn_people',
+    'aldryn_reversion',
+    'aldryn_translation_tools',
+    'parler',
+    'sortedm2m',
+    'taggit',
+    'reversion',
+    'aldryn_boilerplates',
+)
+</code></pre>
+
+<ul>
+<li>Ahora hacemos la migración en base de datos:</li>
+</ul>
+<p><code>python manage.py migrate</code></p>
+<ul>
+<li>El siguiente punto es crear una página con el hook a la aplicación:<ul>
+<li>Crear una página CMS django y la llamamos "Blog".</li>
+<li>En Configuración avanzada... &gt; Configuración de aplicaciones, seleccione NewsBlog.</li>
+</ul>
+</li>
+</ul>
+<p>Como podemos ver en la imagen inferior ahora en la página de blog tenemos un nuevo punto de menú en el toolbar.</p>
+<p><img alt="Apphook" src="../images/blog.png" /></p>
+<p>Añadimos un par de artículos y podemos comprobar que ya está totalmente integrada nuestro blog pero... ¡Qué feo se ve!. Vamos a adaptar las plantillas con las del tema SOLID:</p>
+<ul>
+<li>
+<p>Lo primero es descargarnos el directorio <code>aldryn_newsblog</code> que está dentro del directorio templates de la aplicación. Podemos hacerlo con un <code>cp</code> desde el entorno virtual o descargando del repositorio la app.</p>
+</li>
+<li>
+<p>Ahora ponemos ese directorio dentro del directorio templates de nuestro proyecto, deberíamos tener algo así:</p>
+</li>
+</ul>
+<p><img alt="aldryn_newsblog" src="../images/aldryn_blog.png" /></p>
+<p>Ahora vamos a sobreescribir las templates que necesitamos:</p>
+<ul>
+<li><strong>base.html</strong></li>
+</ul>
+<pre><code>{% extends CMS_TEMPLATE %}
+{% load cms_tags %}
+
+{% block content %}
+  &lt;div class=&quot;container mtb&quot;&gt;
+       &lt;div class=&quot;row&quot;&gt;
+         &lt;! -- BLOG POSTS LIST --&gt;
+         &lt;div class=&quot;col-lg-8&quot;&gt;
+          {% block newsblog_content %}
+              {# article_list.html and article_detail.html extend this template #}
+          {% endblock %}
+        &lt;/div&gt;&lt;! --/col-lg-8 --&gt;
+        &lt;! -- SIDEBAR --&gt;
+        &lt;div class=&quot;col-lg-4&quot;&gt;
+          {% placeholder &quot;sidebar&quot; %}
+        &lt;/div&gt;
+      &lt;/div&gt;&lt;! --/row --&gt;
+     &lt;/div&gt;&lt;! --/container --&gt;
+{% endblock content %}
+</code></pre>
+
+<ul>
+<li><strong>article_detail.html</strong></li>
+</ul>
+<pre><code>{% extends &quot;aldryn_newsblog/base.html&quot; %}
+{% load i18n cms_tags apphooks_config_tags %}
+
+{% block title %}
+    {{ article.title }} - {{ block.super }}
+{% endblock %}
+
+{% block newsblog_content %}
+    {% include &quot;aldryn_newsblog/includes/article.html&quot; with detail_view=&quot;true&quot; %}
+    {% static_placeholder &quot;newsblog_social&quot; %}
+{% endblock %}
+</code></pre>
+
+<ul>
+<li><strong>includes/article.html</strong></li>
+</ul>
+<pre><code>{% load i18n staticfiles thumbnail cms_tags apphooks_config_tags %}
+
+{% if article.featured_image_id %}
+  &lt;img class=&quot;img-responsive&quot; src=&quot;{% thumbnail article.featured_image 800x450 crop subject_location=article.featured_image.subject_location %}&quot; alt=&quot;{{ article.featured_image.alt }}&quot;&gt;
+{% endif %}
+
+{% if detail_view %}
+    &lt;h3 class=&quot;ctitle&quot;&gt;{% render_model article &quot;title&quot; %}&lt;/h3&gt;
+{% else %}
+    &lt;a href=&quot;{% namespace_url 'article-detail' article.slug namespace=namespace default='' %}&quot;&gt;&lt;h3 class=&quot;ctitle&quot;&gt;{% render_model article &quot;title&quot; %}&lt;/h3&gt;&lt;/a&gt;
+{% endif %}
+
+&lt;p&gt;&lt;csmall&gt;Posted: {{ article.publishing_date|date }}&lt;/csmall&gt; | &lt;csmall2&gt;By: {% include &quot;aldryn_newsblog/includes/author.html&quot; with author=article.author %}&lt;/csmall2&gt;&lt;/p&gt;
+{% render_model article &quot;lead_in&quot; %}
+
+{% if detail_view %}
+    {% render_placeholder article.content language placeholder_language %}
+{% else %}
+  &lt;p&gt;&lt;a href=&quot;{% namespace_url 'article-detail' article.slug namespace=namespace default='' %}&quot;&gt;[Read More]&lt;/a&gt;&lt;/p&gt;
+  &lt;div class=&quot;hline&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;spacing&quot;&gt;&lt;/div&gt;
+{% endif %}
+</code></pre>
+
+<ul>
+<li><strong>includes/author.html</strong></li>
+</ul>
+<pre><code>{% load i18n staticfiles thumbnail apphooks_config_tags %}
+
+{% if author %}
+        &lt;a href=&quot;{% namespace_url &quot;article-list-by-author&quot; author.slug namespace=namespace default='' %}&quot;&gt;
+            {% if author.visual %}
+                {% thumbnail author.visual &quot;50x50&quot; crop upscale subject_location=author.visual.subject_location as author_image %}
+                &lt;img src=&quot;{{ author_image.url }}&quot; width=&quot;50&quot; height=&quot;50&quot; alt=&quot;{{ author.name }}&quot;&gt;
+            {% endif %}
+            {{ author.name }}
+        &lt;/a&gt;
+    {% if author.function %}&lt;p&gt;{{ author.function }}&lt;/p&gt;{% endif %}
+    {% if author.article_count %}&lt;p&gt;{{ author.article_count }}&lt;/p&gt;{% endif %}
+{% endif %}
+</code></pre>
+
+<ul>
+<li><strong>plugins/tags.html</strong></li>
+</ul>
+<pre><code>{% load i18n apphooks_config_tags %}
+
+&lt;h4&gt;Popular Tags&lt;/h4&gt;
+&lt;div class=&quot;hline&quot;&gt;&lt;/div&gt;
+&lt;p&gt;
+  {% for tag in tags %}
+    &lt;a class=&quot;btn btn-theme&quot; href=&quot;{% namespace_url &quot;article-list-by-tag&quot; tag.slug namespace=instance.app_config.namespace default='' %}&quot; role=&quot;button&quot;&gt;{{ tag.name }}&lt;/a&gt;
+  {% endfor %}
+&lt;/p&gt;
+
+</code></pre>
+
+<ul>
+<li><strong>plugins/latest_articles.html</strong></li>
+</ul>
+<pre><code>{% load i18n staticfiles thumbnail cms_tags apphooks_config_tags %}
+
+
+&lt;h4&gt;Recent Posts&lt;/h4&gt;
+&lt;div class=&quot;hline&quot;&gt;&lt;/div&gt;
+  &lt;ul class=&quot;popular-posts&quot;&gt;
+
+{% for article in article_list %}
+    &lt;li&gt;
+      {% if article.featured_image_id %}
+        &lt;a href=&quot;{% namespace_url 'article-detail' article.slug namespace=namespace default='' %}&quot;&gt;
+          &lt;img class=&quot;img-responsive&quot; src=&quot;{% thumbnail article.featured_image 70x70 crop subject_location=article.featured_image.subject_location %}&quot;
+          alt=&quot;{{ article.featured_image.alt }}&quot;&gt;
+        &lt;/a&gt;
+      {% endif %}
+        &lt;h4&gt;&lt;a href=&quot;{% namespace_url 'article-detail' article.slug namespace=namespace default='' %}&quot;&gt;{{ article.title }}&lt;/a&gt;&lt;/h4&gt;
+        &lt;em&gt;Posted: {{ article.publishing_date|date }}&lt;/em&gt;
+    &lt;/li&gt;
+{% empty %}
+    &lt;p&gt;{% trans &quot;No items available&quot; %}&lt;/p&gt;
+{% endfor %}
+
+&lt;div class=&quot;spacing&quot;&gt;&lt;/div&gt;
+</code></pre>
+
+<ul>
+<li><strong>plugins/categories.html</strong></li>
+</ul>
+<pre><code>{% load i18n apphooks_config_tags %}
+
+
+&lt;h4&gt;Categories&lt;/h4&gt;
+&lt;div class=&quot;hline&quot;&gt;&lt;/div&gt;
+{% for category in categories %}
+    &lt;p {% if newsblog_category.id == category.id %} class=&quot;active&quot;{% endif %}&gt;
+      &lt;a href=&quot;{% namespace_url &quot;article-list-by-category&quot; category.slug namespace=instance.app_config.namespace default='' %}&quot;&gt;
+        &lt;i class=&quot;fa fa-angle-right&quot;&gt;&lt;/i&gt;
+        {{ category.name }}
+      &lt;/a&gt;
+      &lt;span class=&quot;badge badge-theme pull-right&quot;&gt;{{ category.article_count }}&lt;/span&gt;
+    &lt;/p&gt;
+{% endfor %}
+&lt;div class=&quot;spacing&quot;&gt;&lt;/div&gt;
+</code></pre></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>var base_url = '..';</script>
+        <script data-main="../mkdocs/js/search.js" src="../mkdocs/js/require.js"></script>
+        <script src="../js/base.js"></script><div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
