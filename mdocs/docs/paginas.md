@@ -2,7 +2,7 @@
 
 * Una Página es la entidad más básica de la estructura del sitio en django CMS.
 
-* El CMS utiliza un modelo **jerárquico** de la página: cada página está en relación con otras páginas (padre, hijo o hermano). Esta jerarquía es administrada por la librería [django-treebeardmde](http://django-treebeard.readthedocs.io/en/latest/).
+* El CMS utiliza un modelo **jerárquico** de la página: cada página está en relación con otras páginas (padre, hijo o hermano). Esta jerarquía es administrada por la librería [django-treebeard](http://django-treebeard.readthedocs.io/en/latest/).
 
 * Las páginas son **traducibles** por lo tanto una Página también tiene propiedades específicas de idioma (tendrá un título y un slug para cada idioma en el que existe). Estas propiedades son gestionadas por el modelo `cms.models.Title`
 
