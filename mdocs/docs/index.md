@@ -1,6 +1,5 @@
 # Crea tu web con django CMS
 
-For full documentation visit [mkdocs.org](http://mkdocs.org).
 
 ## Índice
 * Instalación con djangocms-installer
@@ -27,7 +26,7 @@ For full documentation visit [mkdocs.org](http://mkdocs.org).
 
 # Enlace al proyecto finalizado
 
-[https://github.com/jmrivas86/pycones17-crea-tu-web-con-django-cms-code](https://github.com/jmrivas86/pycones17-crea-tu-web-con-django-cms-code).
+[https://github.com/jmrivas86/pycones17-crea-tu-web-con-django-cms](https://github.com/jmrivas86/pycones17-crea-tu-web-con-django-cms).
 
 Para ejecutarlo simplemente clone el proyecto o descargue el zip y siga los siguientes pasos:
 
