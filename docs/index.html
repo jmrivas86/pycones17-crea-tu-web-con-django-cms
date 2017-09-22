@@ -162,21 +162,19 @@
 <p><code>git clone https://github.com/jmrivas86/pycones17-crea-tu-web-con-django-cms.git</code></p>
 <p><code>virtualenv env</code></p>
 <p><code>source env/bin/activate</code></p>
+<p><code>cd pycones17-crea-tu-web-con-django-cms/mi_web</code></p>
+<p><code>pip install -r requirements.txt</code></p>
 <p><code>python manage.py runserver</code></p>
 <h1 id="instalando-django-cms">Instalando django CMS</h1>
-<p>Primero crearemos nuestro entorno virtual con virtualenv:</p>
-<p><code>mkvirtualenv -p /usr/local/bin/python3 pycones2017</code></p>
-<p><code>virtualenv env</code></p>
-<p><code>source env/bin/activate</code></p>
 <h2 id="requisitos">Requisitos</h2>
 <p>django CMS necesita Django 1.8, 1.9 or 1.10 y Python 2.7, 3.3, 3.4, 3.5 o 3.6</p>
 <h2 id="el-entorno-de-trabajo">El entorno de trabajo</h2>
 <p>Instalaremos un entorno virtual con <em>virtualenv</em> donde instalaremos todas nuestras dependencias.</p>
 <h2 id="creamos-y-activamos-nuestro-entorno-virtual">Creamos y activamos nuestro entorno virtual</h2>
-<p><code>virtualenv env</code></p>
-<p><code>source env/bin/activate</code></p>
+<p><code>virtualenv env2</code></p>
+<p><code>source env2/bin/activate</code></p>
 <p>Si estás usando Windows para activar el virtualenv necesitarás:</p>
-<p><code>env\Scripts\activate</code></p>
+<p><code>env2\Scripts\activate</code></p>
 <p>Seguidamente actualizamos pip</p>
 <p><code>pip install --upgrade pip</code></p>
 <p>Usamos django CMS installer para crear nuestro proyecto. Django CMS installer es un script que se encarga de configurar un nuevo proyecto de django CMS</p>
@@ -191,14 +189,7 @@
 <li>contraseña: admin</li>
 </ul>
 <p>Por último vamos a añadir algunas configuraciones al <code>settings.py</code> del proyecto que nos hará en los siguientes pasos:</p>
-<pre><code>THUMBNAIL_PROCESSORS = (
-    'easy_thumbnails.processors.colorspace',
-    'easy_thumbnails.processors.autocrop',
-    'filer.thumbnail_processors.scale_and_crop_with_subject_location',
-    'easy_thumbnails.processors.filters'
-)
-
-DJANGOCMS_STYLE_CHOICES = ['container', 'content', 'teaser', 'row']
+<pre><code>DJANGOCMS_STYLE_CHOICES = ['container', 'content', 'teaser', 'row']
 DJANGOCMS_STYLE_TAGS = ['div', 'article', 'section', 'header', 'footer',
                         'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'i']
 </code></pre></div>
@@ -240,5 +231,5 @@ DJANGOCMS_STYLE_TAGS = ['div', 'article', 'section', 'header', 'footer',
 
 <!--
 MkDocs version : 0.16.3
-Build Date UTC : 2017-09-22 14:56:52
+Build Date UTC : 2017-09-22 15:53:46
 -->

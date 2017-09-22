@@ -36,17 +36,13 @@ Para ejecutarlo simplemente clone el proyecto o descargue el zip y siga los sigu
 
 `source env/bin/activate`
 
+`cd pycones17-crea-tu-web-con-django-cms/mi_web`
+
+`pip install -r requirements.txt`
+
 `python manage.py runserver`
 
 # Instalando django CMS
-
-Primero crearemos nuestro entorno virtual con virtualenv:
-
-`mkvirtualenv -p /usr/local/bin/python3 pycones2017`
-
-`virtualenv env`
-
-`source env/bin/activate`
 
 ## Requisitos
 django CMS necesita Django 1.8, 1.9 or 1.10 y Python 2.7, 3.3, 3.4, 3.5 o 3.6
@@ -54,15 +50,14 @@ django CMS necesita Django 1.8, 1.9 or 1.10 y Python 2.7, 3.3, 3.4, 3.5 o 3.6
 ## El entorno de trabajo
 Instalaremos un entorno virtual con *virtualenv* donde instalaremos todas nuestras dependencias.
 
-
 ## Creamos y activamos nuestro entorno virtual
-`virtualenv env`
+`virtualenv env2`
 
-`source env/bin/activate`
+`source env2/bin/activate`
 
 Si estás usando Windows para activar el virtualenv necesitarás:
 
-`env\Scripts\activate`
+`env2\Scripts\activate`
 
 Seguidamente actualizamos pip
 
@@ -88,13 +83,6 @@ Para entrar en el CMS accedemos a [localhost:8000?edit](http://localhost:8000/es
 Por último vamos a añadir algunas configuraciones al `settings.py` del proyecto que nos hará en los siguientes pasos:
 
 ~~~
-THUMBNAIL_PROCESSORS = (
-    'easy_thumbnails.processors.colorspace',
-    'easy_thumbnails.processors.autocrop',
-    'filer.thumbnail_processors.scale_and_crop_with_subject_location',
-    'easy_thumbnails.processors.filters'
-)
-
 DJANGOCMS_STYLE_CHOICES = ['container', 'content', 'teaser', 'row']
 DJANGOCMS_STYLE_TAGS = ['div', 'article', 'section', 'header', 'footer',
                         'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'i']

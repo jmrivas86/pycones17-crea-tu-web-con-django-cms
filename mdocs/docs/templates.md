@@ -222,10 +222,11 @@ También tendremos que añadirla al `CMS_TEMPLATES` del `settings.py`:
 
 ~~~
 CMS_TEMPLATES = (
+    ## Customize this
     ('fullwidth.html', 'Fullwidth'),
     ('sidebar_left.html', 'Sidebar Left'),
-    ('sidebar_right.html', 'Sidebar Right')
-    ('home.html', 'Home'),
+    ('sidebar_right.html', 'Sidebar Right'),
+    ('home.html', 'Home')
 )
 ~~~
 
