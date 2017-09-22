@@ -21,6 +21,10 @@ CMS_TEMPLATES = (
 
 Podemos ver que tenemos una plantilla html que se llama ***base.html*** la cual contiene la estructura básica que heredará todas las plantillas y además crearemos una nueva que llamaremos ***home.html*** que será la que configuraremos para la home de nuestra web.
 
+Antes de modificar nuestras plantillas vamos a trasladar los assets del tema SOLID a nuestro proyecto, para ello copiamos el directorio `assets` dentro del directorio `static` y le cambiamos el nombre de assets a `vendor` que será el que nosotros utilicemos.
+
+![Ficheros statics](images/vendor.png)
+
 ### base.html
 
 Los cambios que añadimos a nuestra home para adaptarla son:
